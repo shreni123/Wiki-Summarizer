@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Wiki Summerizer</title>
+  
+  <style>
+    body{
+        background-image: url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3NoZWxmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        height: 100%;
+        }
+
+        .tbl
+          {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+          }
+
+         .tbl .content
+         {
+             margin: 5% auto auto auto;
+             position: center;
+             bottom: 0;
+             background: white; /* Fallback color */
+             background: rgba(0, 0, 0, 0.6); /* Black background with 0.5 opacity */
+             color: #f1f1f1;
+             width: 100%;
+             font-family: Courier New;
+             font-size:17px;
+             height:70%;
+             padding: 30%;
+             border:solid black 1px;
+             text-align: center;
+          }
+
+          input, select, textarea{
+          color: white;
+         }
+    </style>
+    
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+</head>
+<body><div class="navbar-fixed">
+   <nav class="grey darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Wiki Summarizer</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+         <li><a href="{{url_for('compare_summary')}}">Compare Summarizers</a></li>
+
+      </ul>
+
+      
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>
+	<ul id="nav-mobile" class="sidenav">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+         <li><a href="{{url_for('compare_summary')}}">Compare</a></li>
+         <li><a href="#contactme">About</a></li>
+      </ul>
+
+<!-- Start of Main Section -->
+ <div class="container">
+    <div class="section tbl ">
+       
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="input-field col s12 m10 content">
+          <div class="icon-block">
+           <form method="POST" action="/analyze">
+          <input type="text" name="keyword" placeholder="Enter a keyword Here" required="true">
+
+         <br/>
+         <button class="btn btn-small waves-effect waves-light light-blue lighten-1 font-weight-bold" type="reset">Clear</button>
+          <button class="btn btn-small waves-effect waves-light purple lighten-1 font-weight-bold" type="submit">Summarize</button>
+          
+        </form>
+          </div>
+        </div>
+
+      </div>
+
+        <div class="row">
+        <div class="input-field col s12 m10 font-weight-bold content">
+          <div class="icon-block">
+           <form method="POST" action="/analyze_url">
+         <input type="text" name="raw_url" placeholder="Enter URL Here" required="true" class="font-weight-bold">
+         <button class="btn btn-small waves-effect waves-light light-blue lighten-1 font-weight-bold" type="reset">Clear</button>
+          <button class="btn btn-small waves-effect waves-light purple lighten-1 font-weight-bold" type="submit">Summarize</button>
+          
+        </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- End -->
+
+  <!-- Result Display-->
+  <section class="section section-solutions-about grey darken-2">
+ <div class="container white-text">
+ 
+      <!--   Icon Section   -->
+        <div class="col s12 m6 grey darken-3">
+          <div class="icon-block">
+            <h5 class="center">Summary</h5>
+              <div class="" role="alert">
+              <p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+        </div>
+            <p class="light">{{ final_summary }}</p>
+          
+          </div>
+        </div>
+
+      </div>
+
+  
+  </div>
+</section>
+
+
+  
+  <footer class="page-footer grey darken-4">
+    <div class="container" id="aboutapp">
+      <div class="row">
+
+
+        </div>
+      
+  
+          <h5 class="white-text  center">Connect With Us</h5>
+          <ul class="center">
+          <a href="https://www.linkedin.com/in/harshaavardhini-senthil-13b2081b9/" target="_blank" class="white-text">
+            <i class="fab fa-linkedin fa-4x center"></i>
+          </a>
+           <a href="https://github.com/Harshaavardhini713" target="_blank" class="white-text">
+            <i class="fab fa-github-square fa-4x center"></i>
+          </a>
+          </ul>
+       
+      </div>
+    </div>
+    <div class="footer-copyright center">
+      <div class="container">
+      <a class="white-text text-lighten-3 ">Made by Ritika, Harshaavardhini & Shreni </a><br/>
+      <a class="white-text text-lighten-3">@RHS</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="static/js/materialize.js"></script>
+  <script src="static/js/init.js"></script>
+  </body>
+</html>
